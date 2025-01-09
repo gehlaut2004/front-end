@@ -12,7 +12,7 @@ const Navbar = () => {
         <img
           src={assets.logo}
           alt=""
-          className="w-28 sm:w-32 lg:w-40 border-transparent hover:border-black hover:border-2 transition-all duration-300"
+          className="w-28 sm:w-32 lg:w-40 border-transparent hover:scale-105 transition-all duration-300"
         />
       </Link>
       <div>
@@ -40,10 +40,12 @@ const Navbar = () => {
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12">
                 <ul className="list-none m-0 p-2 bg-white rounded-lg border text-sm">
                   <li
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
                     className="py-1 px-2 cursor-pointer pr-10"
                   >
-                    {" "}
                     Logout
                   </li>
                 </ul>
