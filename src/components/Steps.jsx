@@ -2,14 +2,14 @@ import React from "react";
 import { stepsData } from "../assets/assets";
 import { motion } from "framer-motion";
 
-const Stesps = () => {
+const Steps = () => {
   return (
     <motion.div
       initial={{ opacity: 0.2, y: 100 }}
       transition={{ duration: 1 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex flex-col items-center justify-center my-32 "
+      className="flex flex-col items-center justify-center my-32"
     >
       <h1 className="text-3xl sm:text-4xl font-semibold mb-2">How it works</h1>
       <p className="text-lg text-gray-600 mb-8">
@@ -17,8 +17,12 @@ const Stesps = () => {
       </p>
       <div className="space-y-4 w-full max-w-3xl">
         {stepsData.map((item, index) => (
-          <div className="flex items-center gap-4 py-5 px-8 bg-white/20 shadow-md bordder cursor-pointer hover:scale-[1.02] transition-all duration-300 rounded-lg">
-            <img width={40} src={item.icon} alt="" />
+          <div
+            key={index} // Added the key prop for better performance
+            className="flex items-center gap-4 py-5 px-8 bg-white/20 shadow-md border cursor-pointer hover:scale-[1.02] transition-all duration-300 rounded-lg"
+          >
+            <img width={40} src={item.icon} alt={item.title} />{" "}
+            {/* Alt text for better accessibility */}
             <div>
               <h2 className="text-xl font-medium">{item.title}</h2>
               <p className="text-gray-500">{item.description}</p>
@@ -30,4 +34,4 @@ const Stesps = () => {
   );
 };
 
-export default Stesps;
+export default Steps;

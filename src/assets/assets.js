@@ -19,6 +19,7 @@ import star_group from "./star_group.png";
 import credit_star from "./credit_star.svg";
 import profile_icon from "./profile_icon.png";
 import footer_logo from "./footer_logo.svg";
+import loading from "./loading.svg";
 
 export const assets = {
   logo,
@@ -37,6 +38,7 @@ export const assets = {
   credit_star,
   profile_icon,
   footer_logo,
+  loading,
 };
 
 export const stepsData = [

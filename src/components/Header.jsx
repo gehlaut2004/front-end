@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { assets } from "../assets/assets";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { AppContext } from "../context/AppContext";
-import { Navigate, useNavigate } from "react-router-dom";
-import { tr } from "motion/react-client";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { user, setShowLogin } = useContext(AppContext);
   const navigate = useNavigate();
+
   const onClickHandler = () => {
     if (user) {
       navigate("/result");
@@ -15,6 +15,7 @@ const Header = () => {
       setShowLogin(true);
     }
   };
+
   return (
     <motion.div
       className="flex flex-col justify-center items-center text-center my-20"
@@ -23,6 +24,7 @@ const Header = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
+      {/* Tagline Section */}
       <motion.div
         className="text-stone-500 inline-flex text-center gap-2 bg-white px-6 py-1 rounded-full border border-neutral-500"
         initial={{ opacity: 0, y: -20 }}
@@ -30,17 +32,21 @@ const Header = () => {
         transition={{ delay: 0.2, duration: 0.8 }}
       >
         <p>Best Text to Image Generator</p>
-        <img src={assets.star_icon} alt="" />
+        <img src={assets.star_icon} alt="Star Icon" />
       </motion.div>
+
+      {/* Header Title */}
       <motion.h1
-        className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center "
+        className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 2 }}
       >
-        Turn your text into <span className="text-blue-500"> beautiful</span>{" "}
-        image
+        Turn your text into <span className="text-blue-500">beautiful</span>{" "}
+        images
       </motion.h1>
+
+      {/* Subtitle */}
       <motion.p
         className="text-center max-w-xl mx-auto mt-5"
         initial={{ opacity: 0 }}
@@ -54,6 +60,8 @@ const Header = () => {
           Bring your ideas to life effortlessly!
         </span>
       </motion.p>
+
+      {/* Call-to-Action Button */}
       <motion.button
         onClick={onClickHandler}
         className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full"
@@ -63,8 +71,18 @@ const Header = () => {
         animate={{ opacity: 1 }}
       >
         Get Started
-        <img className="h-6" src={assets.star_group} alt="" />
+        <motion.img
+          src={assets.star_group}
+          alt="Stars"
+          className="h-6"
+          whileHover={{
+            rotate: 360,
+            transition: { duration: 0.8 },
+          }}
+        />
       </motion.button>
+
+      {/* Sample Images Section */}
       <motion.div
         className="flex flex-wrap justify-center mt-16 gap-3"
         initial={{ opacity: 0 }}
@@ -73,24 +91,26 @@ const Header = () => {
       >
         {Array(6)
           .fill("")
-          .map((item, index) => (
+          .map((_, index) => (
             <motion.img
               className="rounded scale-105 transition-all duration-300 cursor-pointer max-sm:w-10"
               src={index % 2 === 0 ? assets.sample_img_1 : assets.sample_img_2}
-              alt=""
+              alt={`Sample ${index + 1}`}
               key={index}
               width={70}
               whileHover={{ scale: 1.05, duration: 0.2 }}
             />
           ))}
       </motion.div>
+
+      {/* Footer Note */}
       <motion.p
         className="mt-2 text-neutral-600"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
       >
-        Artify generated images
+        Artify-generated images
       </motion.p>
     </motion.div>
   );
